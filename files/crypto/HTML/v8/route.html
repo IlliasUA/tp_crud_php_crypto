@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr" class="full_background">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Portefeuille crypto">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Portfolio</title>
+    <link rel="stylesheet" href="CSS/datatables.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="JS/jquery_3_3_1.js"></script>
+    <script src="JS/datatables.min.js"></script>
+    <script src="JS/my_func.js"></script>
+    <script>
+        let aOfCryptos = [];
+
+
+        aOfCryptos[1] = [];
+        aOfCryptos[1]["id_cryptomonnaie"] = 1;
+        aOfCryptos[1]["id_niveau_risque"] = 1;
+        aOfCryptos[1]["id_reseau"] = 1;
+        aOfCryptos[1]["nom_crypto"] = "Bitcoin";
+        aOfCryptos[1]["symbole_crypto"] = "BTC";
+        aOfCryptos[1]["prix"] = 20000;
+        aOfCryptos[1]["qntte_jetons"] = 10;
+        aOfCryptos[1]["date_chat"] = "2026-04-22";
+        aOfCryptos[1]["notes"] = "Actif principal du portefeuille";
+
+        aOfCryptos[2] = [];
+        aOfCryptos[2]["id_cryptomonnaie"] = 4;
+        aOfCryptos[2]["id_niveau_risque"] = 2;
+        aOfCryptos[2]["id_reseau"] = 4;
+        aOfCryptos[2]["nom_crypto"] = "Solana";
+        aOfCryptos[2]["symbole_crypto"] = SOL;
+        aOfCryptos[2]["prix"] = 100;
+        aOfCryptos[2]["qntte_jetons"] = 1000;
+        aOfCryptos[1]["date_chat"] = "2026-04-22";
+        aOfCryptos[2]["notes"] = "Blockchain rapide et peu couteuse";
+
+        aOfCryptos[1] = [];
+        aOfCryptos[1]["id_cryptomonnaie"] = 2;
+        aOfCryptos[1]["id_niveau_risque"] = 2;
+        aOfCryptos[1]["id_reseau"] = 2;
+        aOfCryptos[1]["nom_crypto"] = "Ethereum";
+        aOfCryptos[1]["symbole_crypto"] = "ETH";
+        aOfCryptos[1]["prix"] = 2000;
+        aOfCryptos[1]["qntte_jetons"] = 10;
+        aOfCryptos[1]["date_chat"] = "2026-04-20";
+        aOfCryptos[1]["notes"] = "Utilise pour les applications decentralisees";
+
+         aOfCryptos[1] = [];
+        aOfCryptos[1]["id_cryptomonnaie"] = 3;
+        aOfCryptos[1]["id_niveau_risque"] = 2;
+        aOfCryptos[1]["id_reseau"] = 3;
+        aOfCryptos[1]["nom_crypto"] = "BNB";
+        aOfCryptos[1]["symbole_crypto"] = "BNB";
+        aOfCryptos[1]["prix"] = 500;
+        aOfCryptos[1]["qntte_jetons"] = 15;
+        aOfCryptos[1]["date_chat"] = "2026-04-05";
+        aOfCryptos[1]["notes"] = "Jeton de l ecosysteme Binance";
+
+    </script>
+</head>
+
+<body>
+    <main id="page">
+        <header class="page-header">
+            <div>
+                <h1>Mon Portfolio</h1>
+            </div>
+
+            <div class="balance">
+                <p>
+                    Solde :
+                    <strong id="solde_total">0,00 $</strong>
+                </p>
+
+                <p>
+                    Valeur du portfolio :
+                    <strong id="valeur_portfolio">0,00 $</strong>
+                </p>
+            </div>
+        </header>
+
+        <section class="portfolio-section">
+            <div class="section-header">
+                <h2>Mes cryptomonnaies</h2>
+
+                <button
+                    type="button"
+                    class="btn btn-add"
+                    id="btn_afficher_formulaire"
+                    onclick="afficherFormulaire()"
+                >
+                    Ajouter une crypto
+                </button>
+            </div>
+
+            <table id="table_cryptos">
+            </table>
+        </section>
+
+        <section
+            class="form-section hide"
+            id="section_formulaire"
+        >
+            <h2 id="titre_formulaire">
+                Ajouter une cryptomonnaie
+            </h2>
+
+            <form id="form_crypto">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="nom_crypto">
+                            Nom de la crypto *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nom_crypto"
+                            name="nom_crypto"
+                            placeholder="Exemple : Bitcoin"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="symbole_crypto">
+                            Symbole *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="symbole_crypto"
+                            name="symbole_crypto"
+                            placeholder="Exemple : BTC"
+                            maxlength="10"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reseau">
+                            Réseau *
+                        </label>
+
+                        <select
+                            id="reseau"
+                            name="reseau"
+                            required
+                        >
+                            <option value="">
+                                Sélectionner un réseau
+                            </option>
+
+                            <option id="reseau_1" value="1">
+                                Bitcoin
+                            </option>
+
+                             <option id="reseau_2" value="2">
+                                Ethereum
+                            </option>
+
+                            <option id="reseau_3" value="3">
+                                BNB Smart Chain
+                            </option>
+
+                            <option id="reseau_4" value="4">
+                                Solana
+                            </option>
+
+                            <option id="reseau_5" value="5">
+                                XRP Ledger
+                            </option>
+
+                             <option id="reseau_6" value="6">
+                                Cardano
+                            </option>
+
+                             <option id="reseau_7" value="7">
+                                Avalanche
+                            </option>
+
+                             <option id="reseau_8" value="8">
+                                Polkadot
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantite">
+                            Quantité *
+                        </label>
+
+                        <input
+                            type="number"
+                            id="quantite"
+                            name="quantite"
+                            min="0.01"
+                            step="any"
+                            placeholder="0"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prix_achat">
+                            Prix d'achat *
+                        </label>
+
+                        <input
+                            type="number"
+                            id="prix_achat"
+                            name="prix_achat"
+                            min="0"
+                            step="0.01"
+                            placeholder="0.00"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date_achat">
+                            Date d'achat *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date_achat"
+                            name="date_achat"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Boutons radio -->
+                <fieldset class="form-fieldset">
+                    <legend>Niveau de risque</legend>
+
+                    <label class="choice">
+                        <input
+                            type="radio"
+                            id="risque_1"
+                            name="niveau_risque"
+                            value="1"
+                            checked
+                        >
+                        Faible
+                    </label>
+
+                    <label class="choice">
+                        <input
+                            type="radio"
+                            id="risque_2"
+                            name="niveau_risque"
+                            value="2"
+                        >
+                        Moyen
+                    </label>
+
+                    <label class="choice">
+                        <input
+                            type="radio"
+                            id="risque_3"
+                            name="niveau_risque"
+                            value="3"
+                        >
+                        Élevé
+                    </label>
+                </fieldset>
+
+                <!-- checkbox -->
+                <fieldset class="form-fieldset">
+                    <legend>Stratégies</legend>
+
+                    <label class="choice">
+                        <input
+                            type="checkbox"
+                            id="strategie_1"
+                            name="strategies"
+                            value="Trading"
+                        >
+                        Conservation a long terme
+                    </label>
+
+                    <label class="choice">
+                        <input
+                            type="checkbox"
+                            id="strategie_2"
+                            name="strategies"
+                            value="Staking"
+                        >
+                        Achat periodique
+                    </label>
+
+                    <label class="choice">
+                        <input
+                            type="checkbox"
+                            id="strategie_3"
+                            name="strategies"
+                            value="Long terme"
+                        >
+                        Trading a court terme
+                    </label>
+                    
+                    <label class="choice">
+                        <input
+                            type="checkbox"
+                            id="strategie_4"
+                            name="strategies"
+                            value="Long terme"
+                        >
+                        Staking
+                    </label>
+
+                     <label class="choice">
+                        <input
+                            type="checkbox"
+                            id="strategie_5"
+                            name="strategies"
+                            value="Long terme"
+                        >
+                        Diversification
+                    </label>
+                </fieldset>
+
+                <fieldset class="form-fieldset">
+                    <legend>Notifications</legend>
+
+                    <label class="choice" for="notification_1">
+                        <input
+                            type="checkbox"
+                            id="notification_1"
+                            name="notifications"
+                            value="1"
+                        >
+                        Alerte de hausse de prix
+                    </label>
+
+                    <label class="choice" for="notification_2">
+                        <input
+                            type="checkbox"
+                            id="notification_2"
+                            name="notifications"
+                            value="2"
+                        >
+                        Alerte de baisse de prix
+                    </label>
+
+                    <label class="choice" for="notification_3">
+                        <input
+                            type="checkbox"
+                            id="notification_3"
+                            name="notifications"
+                            value="3"
+                        >
+                        Objectif de prix atteint
+                    </label>
+
+                    <label class="choice" for="notification_4">
+                        <input
+                            type="checkbox"
+                            id="notification_4"
+                            name="notifications"
+                            value="4"
+                        >
+                        Variation importante sur 24 heures
+                    </label>
+
+                    <label class="choice" for="notification_5">
+                        <input
+                            type="checkbox"
+                            id="notification_5"
+                            name="notifications"
+                            value="5"
+                        >
+                        Rappel de suivi du portefeuille
+                    </label>
+                </fieldset>
+
+                <div class="form-group notes-group">
+                    <label for="notes">
+                        Notes
+                    </label>
+
+                    <textarea
+                        id="notes"
+                        name="notes"
+                        rows="5"
+                        placeholder="Ajouter une remarque..."
+                    ></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button
+                        type="submit"
+                        class="btn btn-add"
+                        id="btn_ajouter"
+                    >
+                        Ajouter
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-edit hide"
+                        id="btn_modifier"
+                    >
+                        Enregistrer les modifications
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-cancel"
+                        onclick="annulerModification()"
+                    >
+                        Annuler
+                    </button>
+                    <!-- Contenu textuel de la page -->
+		            
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

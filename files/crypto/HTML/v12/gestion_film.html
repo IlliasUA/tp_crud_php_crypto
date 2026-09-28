@@ -1,0 +1,505 @@
+		<script type="text/javascript" src="js/jquery_3_3_1.js"></script>
+	    <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
+    	<script type="text/javascript" charset="utf8" src="js/datatables.min.js"></script>
+	<!-- main css and js -->
+		<style type="text/css">
+			/* Style input text general */
+			input[type=text] {
+				border: none;
+			    border-bottom: 1px solid #FF0000;
+			}
+			/* Style input date general */
+			input[type=date] {
+				border: none;
+			    border-bottom: 1px solid #FF0000;
+			}
+			/* Style input nombre general */
+			.input_nombre {
+			    padding-left: 18px;
+				background-image: url(../img/number.png);
+				background-repeat: no-repeat;
+				background-position: left;
+			}
+			/* Style button general */
+			button {
+				text-decoration: none;
+				font-family: Verdana, Arial;
+				font-weight: bold;
+				font-size: 11 px;
+				border-radius: 4px 4px 4px 4px;
+				cursor: pointer;
+				height: 40px;
+			}
+			/* Style button action general */
+			.btn_action {
+				background-color: #5bd39a;
+				color: white;
+				border: 2px solid #5bd39a;
+			}
+			/* Style button action over mouse general */
+			.btn_action:hover {
+				background-color: White;
+				color: #5bd39a;
+				border: 2px solid #5bd39a;
+			  	transition-duration: 2s;
+			}
+			/* Style button save general */
+			.btn_save {
+				background-color: #ff0000;
+				color: white;
+				border: 2px solid #ff0000;
+			}
+			/* Style button save over mouse general */
+			.btn_save:hover {
+				background-color: White;
+				color: #ff0000;
+				border: 2px solid #ff0000;
+			  	transition-duration: 1s;
+			}
+			/* Style hide general */
+			.hide {
+				display: none;
+			}
+			/* Style modal saving in progress */
+			#divModalSaving {
+				background-image: url(images/chargement.gif);
+				background-repeat: no-repeat;
+				background-position: center;
+				z-index: 1000;
+			}
+
+			/* Style modal all space */
+			.modalChanged {
+				display: none;
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: rgba(0, 0, 0, 0.5);
+				z-index: 1000;
+			}
+		</style>
+		<script language="JavaScript">
+		
+			/**
+			* detect IE
+			* returns version of IE or false, if browser is not Internet Explorer or Edge
+			*/
+			function detectIEorSafari() {
+				var ua = window.navigator.userAgent;
+
+				var msie = ua.indexOf('MSIE ');
+				if (msie > 0) {
+					// IE 10 or older
+					return true;
+				}
+
+				var trident = ua.indexOf('Trident/');
+				if (trident > 0) {
+					// IE 11
+					return true;
+				}
+
+				var edge = ua.indexOf('Edge/');
+				if (edge > 0) {
+					// Edge (IE 12+)
+					return true;
+				}
+
+				var safari = ua.indexOf('Safari/');
+				var chrome = ua.indexOf('Chrome/');
+				if ((safari > 0) && (chrome == -1)) {
+					// Safari
+					return true;
+				}
+
+				// other browser
+				return false;
+			}
+		
+			/**
+			 * Convert date aaaa-mm-jj into jj/mm/aaaa
+			 */
+			function convertDate(sDate)	{
+				var aOfDates= sDate.split("-");
+				return aOfDates[2] + "/" + aOfDates[1] + "/" + aOfDates[0];
+			}
+
+			/**
+			 * Convert date jj/mm/aaaa into aaaa-mm-jj
+			 */
+			function inverseDate(sDate)	{
+				var aOfDates= sDate.split("/");
+				return aOfDates[2] + "-" + aOfDates[1] + "-" + aOfDates[0];
+			}
+
+			/**
+			 * Convert specials HTML entities HTML in character
+			 */
+			function htmlspecialchars_decode(str) {
+				if (typeof(str) == "string") {
+					str = str.replace(/&amp;/g, "&");
+					str = str.replace(/&quot;/g, "\"");
+					str = str.replace(/&#039;/g, "'");
+					str = str.replace(/&lt;/g, "<");
+					str = str.replace(/&gt;/g, ">");
+				}
+				return str;
+			}
+			
+			/**
+			 * public aOfFilms is used to store all datas of movies
+			 * @var array
+			 */
+			var aOfFilms= [];
+			
+			/**
+			 * Get Movies from database
+			 *
+			 * if OK add movies to array aOfFilms
+			 *
+			 * if OK then build table and call datatable
+			 */
+			function loadFilms()	{
+				$('#divModalSaving').show();
+				var datas = {
+					page : "liste_film",
+					bJSON : 1
+				}
+				$.ajax({
+					type: "POST",
+					url: "route.php",
+					async: true,
+					data: datas,
+					dataType: "json",
+					cache: false,
+				})
+				.done(function(result) {
+					console.log(result);
+					var iFilm= 0;
+					for (var ligne in result)	{
+						aOfFilms[iFilm]= [];
+						aOfFilms[iFilm]["id_film"]= result[ligne]["id_film"];
+						aOfFilms[iFilm]["titre_film"]= htmlspecialchars_decode(result[ligne]["titre_film"]);
+						aOfFilms[iFilm]["date_film"]= result[ligne]["date_film"];
+						aOfFilms[iFilm]["duree_film"]= result[ligne]["duree_film"];
+						iFilm++;
+					}
+					// INIT DATATABLE
+					// Si je souhaite avoir par défaut autre que les 10 résultats par défaut au chargement
+					// tables.page.len(10).draw();
+					constructTable();
+					tables = $('#table_films').DataTable(configuration);
+					$('#divModalSaving').hide();
+				})
+				.fail(function(err) {
+					alert('error : ' + err.status);
+				});
+			}
+
+			/**
+			 * Parse array aOfFilms and build table HTML
+			 */
+			function constructTable()	{
+				var i;
+
+				var sHTML= "";
+				sHTML+= "<thead>";
+				sHTML+= "<tr>";
+				sHTML+= "<th>id_film</th>";
+				sHTML+= "<th>titre_film</th>";
+				sHTML+= "<th>date_film</th>";
+				sHTML+= "<th>duree_film</th>";
+				sHTML+= "<th>Editer</th>";
+				sHTML+= "<th>Supprimer</th>";
+				sHTML+= "</tr>";
+				sHTML+= "</thead>";
+				sHTML+= "<tbody>";
+
+				for (i=0; i<aOfFilms.length; i++)	{
+					sHTML+= "<tr>";
+					sHTML+= "<td>" + aOfFilms[i]["id_film"] + "</td>";
+					sHTML+= "<td>" + aOfFilms[i]["titre_film"] + "</td>";
+					sHTML+= "<td><span style=\"display: none\">" + aOfFilms[i]["date_film"] + "</span>" + convertDate(aOfFilms[i]["date_film"]) + "</td>";
+					sHTML+= "<td>" + aOfFilms[i]["duree_film"] + "</td>";
+					sHTML+= "<td onClick=\"editFilm(" + i + ")\">Editer</td>";
+					sHTML+= "<td onClick=\"supprimFilm(" + i + ")\">Supprimer</td>";
+					sHTML+= "</tr>";
+				}
+				
+				sHTML+= "</tbody>";
+				$('#table_films').html(sHTML);
+			}
+			
+			/**
+			 * clear table HTML
+			 * 
+			 * clear and destroy datatable
+			 * 
+			 * build table and call datatable
+			 * 
+			 */
+			function rebuildDatable()	{
+				tables.clear();
+				tables.destroy();
+				constructTable();
+				tables = $('#table_films').DataTable(configuration);
+			}
+			
+			/**
+			 * clear HTML Form
+			 * 
+			 */
+			function clearForm()	{
+				$('#id_film').val("");
+				$('#titre_film').val("");
+				$('#date_film').val("");
+				$('#duree_film').val("");
+				$('#btn_ajouter').show();
+				$('#btn_modifier').hide();
+				$('#btn_annuler').hide();
+			}
+			
+			/**
+			 * add a movie in database
+			 * 
+			 * build table and call datatable
+			 * 
+			 */
+			function ajoutFilm()	{
+				$('#divModalSaving').show();
+				var dDateFilm;
+				if (detectIEorSafari())	{
+					dDateFilm= inverseDate($('#date_film').val());
+				}  else  {
+					dDateFilm= $('#date_film').val();
+				}
+				var datas = {
+					page : "save_film",
+					bJSON : 1, 
+					titre_film: $('#titre_film').val(),
+					date_film: dDateFilm,
+					duree_film: $('#duree_film').val(),
+				}
+				$.ajax({
+					type: "POST",
+					url: "route.php",
+					async: true,
+					data: datas,
+					dataType: "json",
+					cache: false,
+				})
+				.done(function(result) {
+					if (result[0]["error"] != "")	{
+						$('#divModalSaving').hide();
+						alert("Erreur lors de l'ajout de votre film. Vous allez être déconnecté.");
+						self.location.href= "route.php?page=logout"
+					}  else  {
+						var iLongueur= aOfFilms.length;
+						aOfFilms[iLongueur]= [];
+						aOfFilms[iLongueur]["id_film"]= result[0]["id_film"];
+						aOfFilms[iLongueur]["titre_film"]= $('#titre_film').val();
+						aOfFilms[iLongueur]["date_film"]= dDateFilm;
+						aOfFilms[iLongueur]["duree_film"]= $('#duree_film').val();
+						rebuildDatable();
+						clearForm();
+						$('#divModalSaving').hide();
+					}
+				})
+				.fail(function(err) {
+					console.log('error : ' + err.status);
+					alert("Erreur lors de l'ajout de votre film. Vous allez être déconnecté.");
+					self.location.href= "route.php?page=logout"
+				});
+			}
+
+			/**
+			 * Update a movie in database
+			 * 
+			 * build table and call datatable
+			 * 
+			 */
+			function majFilm()	{
+				$('#divModalSaving').show();
+				var dDateFilm;
+				if (detectIEorSafari())	{
+					dDateFilm= inverseDate($('#date_film').val());
+				}  else  {
+					dDateFilm= $('#date_film').val();
+				}
+				var datas = {
+					page : "update_film",
+					bJSON : 1, 
+					id_film: $('#id_film').val(),
+					titre_film: $('#titre_film').val(),
+					date_film: dDateFilm,
+					duree_film: $('#duree_film').val(),
+				}
+				$.ajax({
+					type: "POST",
+					url: "route.php",
+					async: true,
+					data: datas,
+					dataType: "json",
+					cache: false,
+				})
+				.done(function(result) {
+					if (result[0]["error"] != "")	{
+						$('#divModalSaving').hide();
+						alert("Erreur lors de la modification de votre film. Vous allez être déconnecté.");
+						self.location.href= "route.php?page=logout"
+					}  else  {
+						aOfFilms[iIndiceEditionEncours]["id_film"]= $('#id_film').val();
+						aOfFilms[iIndiceEditionEncours]["titre_film"]= $('#titre_film').val();
+						aOfFilms[iIndiceEditionEncours]["date_film"]= dDateFilm;
+						aOfFilms[iIndiceEditionEncours]["duree_film"]= $('#duree_film').val();
+						rebuildDatable();
+						clearForm();
+						$('#divModalSaving').hide();
+					}
+				})
+				.fail(function(err) {
+					console.log('error : ' + err.status);
+					alert("Erreur lors de la modification de votre film. Vous allez être déconnecté.");
+					self.location.href= "route.php?page=logout"
+				});
+			}
+
+			/**
+			 * delete a movie in database
+			 * 
+			 * build table and call datatable
+			 * 
+			 */
+			function supprimFilm(iIndiceSuppr)	{
+				$('#divModalSaving').show();
+				var datas = {
+					page : "supprime_film",
+					bJSON : 1, 
+					id_film: aOfFilms[iIndiceSuppr]["id_film"]
+				}
+				$.ajax({
+					type: "POST",
+					url: "route.php",
+					async: true,
+					data: datas,
+					dataType: "json",
+					cache: false,
+				})
+				.done(function(result) {
+					if (result[0]["error"] != "")	{
+						$('#divModalSaving').hide();
+						alert("Erreur lors de la suppression de votre film. Vous allez être déconnecté.");
+						self.location.href= "route.php?page=logout"
+					}  else  {
+						for (var i=iIndiceSuppr; i<(aOfFilms.length-1); i++)	{
+							aOfFilms[i]= aOfFilms[i+1];
+						}
+						aOfFilms.length--;
+						rebuildDatable();
+						clearForm();
+						$('#divModalSaving').hide();
+					}
+				})
+				.fail(function(err) {
+					console.log('error : ' + err.status);
+					alert("Erreur lors de la suppression de votre film. Vous allez être déconnecté.");
+					self.location.href= "route.php?page=logout"
+				});
+			}
+			
+			/**
+			 * Edit a movie to the form
+			 * 
+			 */
+			var iIndiceEditionEncours;
+			function editFilm(iIndiceEdit)	{
+				iIndiceEditionEncours= iIndiceEdit;
+				$('#id_film').val(aOfFilms[iIndiceEdit]["id_film"]);
+				$('#titre_film').val(aOfFilms[iIndiceEdit]["titre_film"]);
+				if (detectIEorSafari())	{
+					$('#date_film').val(convertDate(aOfFilms[iIndiceEdit]["date_film"]));
+				}  else  {
+					$('#date_film').val(aOfFilms[iIndiceEdit]["date_film"]);
+				}
+				$('#duree_film').val(aOfFilms[iIndiceEdit]["duree_film"]);
+				$('#btn_ajouter').hide();
+				$('#btn_modifier').show();
+				$('#btn_annuler').show();
+			}
+
+			/**
+			 * Configuration Datatable
+			 * 
+			 */
+			const configuration = {
+				"stateSave": false,
+				"order": [[2, "asc"]],
+				"pagingType": "simple_numbers",
+				"searching": true,
+				"lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Tous"]], 
+				"language": {
+					"info": "Films _START_ à _END_ sur _TOTAL_ sélectionnées",
+					"emptyTable": "Aucun film",
+					"lengthMenu": "_MENU_ films par page",
+					"search": "Rechercher : ",
+					"zeroRecords": "Aucun résultat de recherche",
+					"paginate": {
+						"previous": "Précédent",
+						"next": "Suivant"
+					},
+					"sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+					"sInfoEmpty":      "Films 0 à 0 sur 0 sélectionnée",
+				},
+				"columns": [
+					{
+						"orderable": true
+					},
+					{
+						"orderable": true
+					},
+					{
+						"orderable": true
+					},
+					{
+						"orderable": false
+					},
+					{
+						"orderable": false
+					},
+					{
+						"orderable": false
+					}
+				],
+				'retrieve': true
+			};
+
+			/**
+			 * Init start
+			 * 
+			 */
+			var tables;
+			$(document).ready(function() {
+				loadFilms();
+			});
+			
+		</script>
+
+		<table id="table_films" border="1">
+		</table>
+		<p>id_film : <input type="text" name="id_film" id="id_film" readonly></p>
+		<p>titre_film : <input type="text" name="titre_film" id="titre_film"></p>
+		<p>date_film : <input type="date" name="date_film" id="date_film"></p>
+		<p>duree_film : <input type="text" name="duree_film" id="duree_film"></p>
+		<p>
+			<button onClick="ajoutFilm()" class="btn_action" id="btn_ajouter">AJOUTER</button>
+			&nbsp;&nbsp;&nbsp;
+			<button onClick="majFilm()" class="btn_action hide" id="btn_modifier">MODIFIER</button>
+			&nbsp;&nbsp;&nbsp;
+			<button onClick="clearForm()" class="btn_save hide" id="btn_annuler">ANNULER</button>
+		</p>
+
+		<!-- CREATION MODAL ENREGISTREMENT EN COURS -->
+		<div class="modalChanged" id="divModalSaving">
+		</div>

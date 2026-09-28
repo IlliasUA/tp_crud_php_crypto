@@ -1,0 +1,154 @@
+[27-Sep-2021 10:34:39 UTC] getSelectDatas = SELECT * FROM `abonnement`
+[27-Sep-2021 10:34:39 UTC] getSelectDatas = SELECT CGV FROM `cgu_cgv`
+[27-Sep-2021 10:34:39 UTC] getSelectDatas = SELECT login_pro , siret_pro FROM `professionnel`
+[27-Sep-2021 10:34:42 UTC] getSelectDatas = SELECT id_ville , ville , code_ville FROM `ville` ORDER BY ville
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 115
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkExistDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:67
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 115
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkExistDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:67
+[27-Sep-2021 10:34:48 UTC] 
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 116
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkExistDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:67
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 116
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkExistDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:67
+[27-Sep-2021 10:34:48 UTC] 
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 120
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkExistDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:67
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 120
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkExistDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:67
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 120
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkExistDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:67
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 120
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkExistDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:67
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 179
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 179
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 186
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 186
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 193
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 193
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 200
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 200
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 207
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 207
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 214
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 214
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 221
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 221
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined property: Tunnel_commande_add_pro::$VARS_HTML in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 228
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Trying to access array offset on value of type null in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php on line 228
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. Tunnel_commande_add_pro->__construct() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   3. Tunnel_commande_add_pro->main() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:37
+[27-Sep-2021 10:34:48 UTC] PHP   4. Tunnel_commande_add_pro->checkFormatDatasPro() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\modules\tunnel_commande_add_pro.php:70
+[27-Sep-2021 10:34:48 UTC] PHP Notice:  Undefined index: tunnel_commande_add_pro in C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\files\HTML\tunnel_commande_add_pro.html on line 3
+[27-Sep-2021 10:34:48 UTC] PHP Stack trace:
+[27-Sep-2021 10:34:48 UTC] PHP   1. {main}() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:0
+[27-Sep-2021 10:34:48 UTC] PHP   2. require() C:\Users\paucath\Documents\GitHub\Mes_travaux_immo\DEVS\www\route.php:47

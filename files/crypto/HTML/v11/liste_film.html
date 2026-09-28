@@ -1,0 +1,30 @@
+			<h1>Liste des films</h1>
+			<hr>
+			<table border="1" align="center">
+				<tr>
+					<td>ID FILM</td>
+					<td>TITRE</td>
+					<td>DATE</td>
+					<td>DUREE</td>
+					<td>EDITION</td>
+					<td>SUPPRESSION</td>
+				</tr>
+			<?php
+				if ($oMain->resultat["liste_film"]["error"] != "")	{
+					echo "Une erreur s'est produite lors de la selection de vos films.<br>";
+					echo "Faites appel à un ami."
+				}  else  {
+					foreach ($oMain->resultat["liste_film"] as $ligne)	{
+						echo "<tr>\n";
+						echo "<td>" . $ligne["id_film"] . "</td>\n";
+						echo "<td>" . $ligne["titre_film"] . "</td>\n";
+						echo "<td>" . $ligne["date_film"] . "</td>\n";
+						echo "<td>" . $ligne["duree_film"] . "</td>\n";
+						echo "<td><a href=\"route.php?page=edit_film&id_film=" . $ligne["id_film"] . "\">EDIT</a></td>\n";
+						echo "<td><a href=\"route.php?page=supprime_film&id_film=" . $ligne["id_film"] . "\">X</a></td>\n";
+						echo "</tr>\n";
+					}
+				}
+			?>
+			</table>
+			

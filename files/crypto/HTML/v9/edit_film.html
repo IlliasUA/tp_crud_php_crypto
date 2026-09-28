@@ -1,0 +1,28 @@
+			<h1>Edition d'un film</h1>
+			<hr>
+			<form action="route.php" method="POST">
+				<p>
+					Page du PHP : 
+					<input type="text" name="page" id="page" value="update_film">
+				</p>
+				<p>
+					ID du film : 
+					<input type="text" name="id_film" id="id_film" value="<?= $resultat[0]["id_film"] ?>">
+				</p>
+				<p>
+					Titre du film : 
+					<input type="text" name="titre_film" id="titre_film" value="<?= $resultat[0]["titre_film"] ?>">
+				</p>
+				<p>
+					Date du film (format aaaa-mm-jj) : 
+					<input type="text" name="date_film" id="date_film" value="<?= $resultat[0]["date_film"] ?>" size="10">
+				</p>
+				<p>
+					Durée du film (en minutes) : 
+					<input type="text" name="duree_film" id="duree_film" value="<?= $resultat[0]["duree_film"] ?>" size="4">
+				</p>
+				<p>
+					<input type="submit" value="METTRE A JOUR">
+				</p>
+			</form>
+			
