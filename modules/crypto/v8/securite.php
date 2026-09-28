@@ -6,11 +6,11 @@ class securite {
 		$VARS_HTML= [];
 
 		foreach($_POST as $key => $val)	{
-			$VARS_HTML[$key]= htmlspecialchars($val, ENT_QUOTES);
+			$VARS_HTML[$key]= is_array($val) ? $val : trim($val);
 		}
 
 		foreach($_GET as $key => $val)	{
-			$VARS_HTML[$key]= htmlspecialchars($val, ENT_QUOTES);
+			$VARS_HTML[$key]= is_array($val) ? $val : trim($val);
 		}
 
 		if ( (!(isset($VARS_HTML["page"]))) || ($VARS_HTML["page"] == "") )	{

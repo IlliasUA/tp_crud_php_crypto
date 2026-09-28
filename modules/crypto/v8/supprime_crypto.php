@@ -1,21 +1,17 @@
 <?php
 class supprime_crypto
 {
-    function getAllResultats($numero_de_connexion, $oBdd, $GLOBALS_INI, $VARS_HTML)
+    function getAllResultats($pdo, $oBdd, $GLOBALS_INI, $vars)
     {
-        $spathSQL = $GLOBALS_INI["PATH_HOME"]
-                  . $GLOBALS_INI["PATH_SQL"]
-                  . "delete_crypto.sql";
+        $idCrypto = isset($vars["id_crypto"]) ? filter_var($vars["id_crypto"], FILTER_VALIDATE_INT) : false;
+        if (!$idCrypto || $idCrypto < 1) {
+            throw new InvalidArgumentException("Identifiant de cryptomonnaie invalide");
+        }
 
-        $resultat = $oBdd->treatDatas(
-            $numero_de_connexion,
-            $spathSQL,
-            array(
-                "id_crypto" => $VARS_HTML["id_crypto"]
-            )
-        );
-
-        return $resultat;
+        $pdo->prepare("DELETE FROM strategies_crypto WHERE id_cryptomonnaie = :id")->execute(array("id" => $idCrypto));
+        $pdo->prepare("DELETE FROM notification_crypto WHERE id_cryptomonnaie = :id")->execute(array("id" => $idCrypto));
+        $sql = $GLOBALS_INI["PATH_HOME"] . $GLOBALS_INI["PATH_SQL"] . "delete_crypto.sql";
+        return $oBdd->treatDatas($pdo, $sql, array("id_crypto" => $idCrypto));
     }
 }
 ?>

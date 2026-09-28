@@ -17,11 +17,20 @@
 	$numero_de_connexion= $oBdd->connectBDD($GLOBALS_INI["DB_HOST"], $GLOBALS_INI["DB_NAME"], $GLOBALS_INI["DB_LOGIN"], $GLOBALS_INI["DB_PSW"]);
 	
 	$monPHP= $VARS_HTML["page"];
+	$pagesAutorisees = array("liste_crypto", "save_crypto", "update_crypto", "supprime_crypto");
+	if (!in_array($monPHP, $pagesAutorisees, true)) {
+		http_response_code(404);
+		exit("Page inconnue");
+	}
 	$myClass= ucfirst($monPHP);
 
 	require $GLOBALS_INI["PATH_HOME"] . $GLOBALS_INI["PATH_CLASS"] .  $version . "/" . $monPHP . ".php";
 	$oMain= new $myClass();
 	$resultat= $oMain->getAllResultats($numero_de_connexion, $oBdd, $GLOBALS_INI, $VARS_HTML);
+	if ($monPHP !== "liste_crypto") {
+		header("Location: route.php?status=" . rawurlencode($monPHP));
+		exit;
+	}
 	/*
 	require $GLOBALS_INI["PATH_HOME"] . $GLOBALS_INI["PATH_CLASS"] .  $version . "/" . $monPHP . ".php";
 	$resultat= getAllResultats($numero_de_connexion, $GLOBALS_INI, $VARS_HTML);

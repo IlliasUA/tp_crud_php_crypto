@@ -122,6 +122,8 @@ function afficherFormulaire() {
     iIndiceEdited = null;
 
     $("#form_crypto")[0].reset();
+    $("#action_page").val("save_crypto");
+    $("#id_crypto").val("");
     $("#section_formulaire").removeClass("hide");
     $("#titre_formulaire").text("Ajouter une cryptomonnaie");
     $("#btn_ajouter").removeClass("hide");
@@ -137,82 +139,11 @@ function annulerModification() {
     iIndiceEdited = null;
 
     $("#form_crypto")[0].reset();
+    $("#action_page").val("save_crypto");
+    $("#id_crypto").val("");
     $("#section_formulaire").addClass("hide");
     $("#btn_ajouter").removeClass("hide");
     $("#btn_modifier").addClass("hide");
-}
-
-function recupererCasesCochees(nom) {
-    let valeurs = [];
-
-    $('input[name="' + nom + '"]:checked').each(function () {
-        valeurs.push($(this).val());
-    });
-
-    return valeurs;
-}
-
-function libellesCasesCochees(nom) {
-    return $('input[name="' + nom + '"]:checked').map(function () {
-        return $(this).closest("label").text().trim();
-    }).get();
-}
-
-function recupererDonneesFormulaire(ancien = null) {
-    let crypto = [];
-
-    crypto["id_cryptomonnaie"] = ancien
-        ? ancien["id_cryptomonnaie"]
-        : Math.max(
-            0,
-            ...aOfCryptos
-                .filter(Boolean)
-                .map(c => Number(c["id_cryptomonnaie"]))
-        ) + 1;
-
-    crypto["nom"] = $("#nom_crypto").val().trim();
-    crypto["symbole"] = $("#symbole_crypto").val().trim().toUpperCase();
-
-    crypto["id_reseau"] = Number($("#reseau").val());
-    crypto["reseau"] = $("#reseau option:selected").text().trim();
-
-    crypto["quantite"] = Number($("#quantite").val());
-    crypto["prix"] = Number($("#prix_achat").val());
-
-    crypto["dateAchat"] = $("#date_achat").val();
-    crypto["dateAchatSql"] =
-        ancien && ancien["dateAchat"] === crypto["dateAchat"]
-            ? ancien["dateAchatSql"]
-            : crypto["dateAchat"] + " 00:00:00";
-
-    crypto["id_niveau_risque"] = Number(
-        $('input[name="niveau_risque"]:checked').val()
-    );
-    crypto["risque"] = $('input[name="niveau_risque"]:checked')
-        .closest("label")
-        .text()
-        .trim();
-
-    crypto["id_strategies"] = recupererCasesCochees("strategies").map(Number);
-    crypto["strategies"] = libellesCasesCochees("strategies");
-
-    crypto["id_notifications"] = recupererCasesCochees("notifications")
-        .map(Number);
-    crypto["id_notification"] = crypto["id_notifications"];
-    crypto["notifications"] = libellesCasesCochees("notifications");
-
-    crypto["notes"] = $("#notes").val().trim();
-
-    return crypto;
-}
-
-function ajouterCrypto() {
-    let nouvelleCrypto = recupererDonneesFormulaire();
-
-    aOfCryptos.push(nouvelleCrypto);
-
-    rebuildTableau();
-    annulerModification();
 }
 
 function editCrypto(iIndiceToEdit) {
@@ -228,35 +159,37 @@ function editCrypto(iIndiceToEdit) {
     $("#date_achat").val(crypto["dateAchat"]);
     $("#notes").val(crypto["notes"]);
 
-    $('input[name="niveau_risque"]').prop("checked", false);
+    $('input[name="id_niveau_risque"]').prop("checked", false);
     $(
-        'input[name="niveau_risque"][value="' +
+        'input[name="id_niveau_risque"][value="' +
         crypto["id_niveau_risque"] +
         '"]'
     ).prop("checked", true);
 
-    $('input[name="strategies"]').prop("checked", false);
+    $('input[name="strategies[]"]').prop("checked", false);
     for (let i = 0; i < (crypto["id_strategies"] || []).length; i++) {
         $(
-            'input[name="strategies"][value="' +
+            'input[name="strategies[]"][value="' +
             crypto["id_strategies"][i] +
             '"]'
         ).prop("checked", true);
     }
 
-    $('input[name="notifications"]').prop("checked", false);
+    $('input[name="notifications[]"]').prop("checked", false);
     let idsNotifications =
         crypto["id_notifications"] || crypto["id_notification"] || [];
 
     for (let j = 0; j < idsNotifications.length; j++) {
         $(
-            'input[name="notifications"][value="' +
+            'input[name="notifications[]"][value="' +
             idsNotifications[j] +
             '"]'
         ).prop("checked", true);
     }
 
     $("#titre_formulaire").text("Modifier la cryptomonnaie");
+    $("#action_page").val("update_crypto");
+    $("#id_crypto").val(crypto["id_cryptomonnaie"]);
     $("#btn_ajouter").addClass("hide");
     $("#btn_modifier").removeClass("hide");
     $("#section_formulaire").removeClass("hide");
@@ -265,17 +198,6 @@ function editCrypto(iIndiceToEdit) {
         behavior: "smooth",
         block: "start"
     });
-}
-
-function modifierCrypto() {
-    if (iIndiceEdited === null) return;
-
-    aOfCryptos[iIndiceEdited] = recupererDonneesFormulaire(
-        aOfCryptos[iIndiceEdited]
-    );
-
-    rebuildTableau();
-    annulerModification();
 }
 
 function supprimerCrypto(iIndiceToDelete) {
@@ -289,8 +211,15 @@ function supprimerCrypto(iIndiceToDelete) {
 
     if (!confirmation) return;
 
-    aOfCryptos.splice(iIndiceToDelete, 1);
-    rebuildTableau();
+    const form = document.createElement("form");
+    form.method = "post";
+    form.action = "route.php";
+    form.innerHTML =
+        '<input type="hidden" name="page" value="supprime_crypto">' +
+        '<input type="hidden" name="id_crypto" value="' +
+        Number(crypto["id_cryptomonnaie"]) + '">';
+    document.body.appendChild(form);
+    form.submit();
 }
 
 $(document).ready(function () {
@@ -298,13 +227,4 @@ $(document).ready(function () {
     tableCryptos = $("#table_cryptos").DataTable(configuration);
     calculerPortfolio();
 
-    $("#form_crypto").on("submit", function (event) {
-        event.preventDefault();
-
-        if (iIndiceEdited === null) {
-            ajouterCrypto();
-        } else {
-            modifierCrypto();
-        }
-    });
 });

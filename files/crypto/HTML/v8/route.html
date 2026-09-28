@@ -11,52 +11,12 @@
     <script src="JS/datatables.min.js"></script>
     <script src="JS/my_func.js"></script>
     <script>
-        let aOfCryptos = [];
-
-
-        aOfCryptos[1] = [];
-        aOfCryptos[1]["id_cryptomonnaie"] = 1;
-        aOfCryptos[1]["id_niveau_risque"] = 1;
-        aOfCryptos[1]["id_reseau"] = 1;
-        aOfCryptos[1]["nom_crypto"] = "Bitcoin";
-        aOfCryptos[1]["symbole_crypto"] = "BTC";
-        aOfCryptos[1]["prix"] = 20000;
-        aOfCryptos[1]["qntte_jetons"] = 10;
-        aOfCryptos[1]["date_chat"] = "2026-04-22";
-        aOfCryptos[1]["notes"] = "Actif principal du portefeuille";
-
-        aOfCryptos[2] = [];
-        aOfCryptos[2]["id_cryptomonnaie"] = 4;
-        aOfCryptos[2]["id_niveau_risque"] = 2;
-        aOfCryptos[2]["id_reseau"] = 4;
-        aOfCryptos[2]["nom_crypto"] = "Solana";
-        aOfCryptos[2]["symbole_crypto"] = SOL;
-        aOfCryptos[2]["prix"] = 100;
-        aOfCryptos[2]["qntte_jetons"] = 1000;
-        aOfCryptos[1]["date_chat"] = "2026-04-22";
-        aOfCryptos[2]["notes"] = "Blockchain rapide et peu couteuse";
-
-        aOfCryptos[1] = [];
-        aOfCryptos[1]["id_cryptomonnaie"] = 2;
-        aOfCryptos[1]["id_niveau_risque"] = 2;
-        aOfCryptos[1]["id_reseau"] = 2;
-        aOfCryptos[1]["nom_crypto"] = "Ethereum";
-        aOfCryptos[1]["symbole_crypto"] = "ETH";
-        aOfCryptos[1]["prix"] = 2000;
-        aOfCryptos[1]["qntte_jetons"] = 10;
-        aOfCryptos[1]["date_chat"] = "2026-04-20";
-        aOfCryptos[1]["notes"] = "Utilise pour les applications decentralisees";
-
-         aOfCryptos[1] = [];
-        aOfCryptos[1]["id_cryptomonnaie"] = 3;
-        aOfCryptos[1]["id_niveau_risque"] = 2;
-        aOfCryptos[1]["id_reseau"] = 3;
-        aOfCryptos[1]["nom_crypto"] = "BNB";
-        aOfCryptos[1]["symbole_crypto"] = "BNB";
-        aOfCryptos[1]["prix"] = 500;
-        aOfCryptos[1]["qntte_jetons"] = 15;
-        aOfCryptos[1]["date_chat"] = "2026-04-05";
-        aOfCryptos[1]["notes"] = "Jeton de l ecosysteme Binance";
+        let aOfCryptos = <?php
+            echo json_encode(
+                $resultat,
+                JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+            );
+        ?>;
 
     </script>
 </head>
@@ -107,7 +67,9 @@
                 Ajouter une cryptomonnaie
             </h2>
 
-            <form id="form_crypto">
+            <form id="form_crypto" method="post" action="route.php">
+                <input type="hidden" id="action_page" name="page" value="save_crypto">
+                <input type="hidden" id="id_crypto" name="id_crypto" value="">
 
                 <div class="form-grid">
 
@@ -147,7 +109,7 @@
 
                         <select
                             id="reseau"
-                            name="reseau"
+                            name="id_reseau"
                             required
                         >
                             <option value="">
@@ -197,7 +159,7 @@
                         <input
                             type="number"
                             id="quantite"
-                            name="quantite"
+                            name="qntte_jetons"
                             min="0.01"
                             step="any"
                             placeholder="0"
@@ -213,7 +175,7 @@
                         <input
                             type="number"
                             id="prix_achat"
-                            name="prix_achat"
+                            name="prix"
                             min="0"
                             step="0.01"
                             placeholder="0.00"
@@ -243,7 +205,7 @@
                         <input
                             type="radio"
                             id="risque_1"
-                            name="niveau_risque"
+                            name="id_niveau_risque"
                             value="1"
                             checked
                         >
@@ -254,7 +216,7 @@
                         <input
                             type="radio"
                             id="risque_2"
-                            name="niveau_risque"
+                            name="id_niveau_risque"
                             value="2"
                         >
                         Moyen
@@ -264,7 +226,7 @@
                         <input
                             type="radio"
                             id="risque_3"
-                            name="niveau_risque"
+                            name="id_niveau_risque"
                             value="3"
                         >
                         Élevé
@@ -279,8 +241,8 @@
                         <input
                             type="checkbox"
                             id="strategie_1"
-                            name="strategies"
-                            value="Trading"
+                            name="strategies[]"
+                            value="1"
                         >
                         Conservation a long terme
                     </label>
@@ -289,8 +251,8 @@
                         <input
                             type="checkbox"
                             id="strategie_2"
-                            name="strategies"
-                            value="Staking"
+                            name="strategies[]"
+                            value="2"
                         >
                         Achat periodique
                     </label>
@@ -299,8 +261,8 @@
                         <input
                             type="checkbox"
                             id="strategie_3"
-                            name="strategies"
-                            value="Long terme"
+                            name="strategies[]"
+                            value="3"
                         >
                         Trading a court terme
                     </label>
@@ -309,8 +271,8 @@
                         <input
                             type="checkbox"
                             id="strategie_4"
-                            name="strategies"
-                            value="Long terme"
+                            name="strategies[]"
+                            value="4"
                         >
                         Staking
                     </label>
@@ -319,8 +281,8 @@
                         <input
                             type="checkbox"
                             id="strategie_5"
-                            name="strategies"
-                            value="Long terme"
+                            name="strategies[]"
+                            value="5"
                         >
                         Diversification
                     </label>
@@ -333,7 +295,7 @@
                         <input
                             type="checkbox"
                             id="notification_1"
-                            name="notifications"
+                            name="notifications[]"
                             value="1"
                         >
                         Alerte de hausse de prix
@@ -343,7 +305,7 @@
                         <input
                             type="checkbox"
                             id="notification_2"
-                            name="notifications"
+                            name="notifications[]"
                             value="2"
                         >
                         Alerte de baisse de prix
@@ -353,7 +315,7 @@
                         <input
                             type="checkbox"
                             id="notification_3"
-                            name="notifications"
+                            name="notifications[]"
                             value="3"
                         >
                         Objectif de prix atteint
@@ -363,7 +325,7 @@
                         <input
                             type="checkbox"
                             id="notification_4"
-                            name="notifications"
+                            name="notifications[]"
                             value="4"
                         >
                         Variation importante sur 24 heures
@@ -373,7 +335,7 @@
                         <input
                             type="checkbox"
                             id="notification_5"
-                            name="notifications"
+                            name="notifications[]"
                             value="5"
                         >
                         Rappel de suivi du portefeuille
@@ -387,7 +349,7 @@
 
                     <textarea
                         id="notes"
-                        name="notes"
+                        name="note"
                         rows="5"
                         placeholder="Ajouter une remarque..."
                     ></textarea>

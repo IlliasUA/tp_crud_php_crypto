@@ -9,4 +9,4 @@ SELECT
     date_achat,
     note
 FROM cryptomonnaie
-WHERE id_cryptomonnaie = @id_crypto;
+WHERE id_cryptomonnaie = :id_crypto;

@@ -1,29 +1,23 @@
 <?php
+require_once __DIR__ . "/crypto_form.php";
+
 class update_crypto
 {
-    function getAllResultats($numero_de_connexion, $oBdd, $GLOBALS_INI, $VARS_HTML)
+    function getAllResultats($pdo, $oBdd, $GLOBALS_INI, $vars)
     {
-        $spathSQL = $GLOBALS_INI["PATH_HOME"]
-                  . $GLOBALS_INI["PATH_SQL"]
-                  . "update_crypto.sql";
+        $idCrypto = isset($vars["id_crypto"]) ? filter_var($vars["id_crypto"], FILTER_VALIDATE_INT) : false;
+        if (!$idCrypto || $idCrypto < 1) {
+            throw new InvalidArgumentException("Identifiant de cryptomonnaie invalide");
+        }
 
-        $resultat = $oBdd->treatDatas(
-            $numero_de_connexion,
-            $spathSQL,
-            array(
-                "id_crypto"         => $VARS_HTML["id_crypto"],
-                "nom_niveau_risque" => $VARS_HTML["nom_niveau_risque"],
-                "nom_reseau"        => $VARS_HTML["nom_reseau"],
-                "nom_crypto"        => $VARS_HTML["nom_crypto"],
-                "symbole_crypto"    => $VARS_HTML["symbole_crypto"],
-                "prix"              => $VARS_HTML["prix"],
-                "qntte_jetons"      => $VARS_HTML["qntte_jetons"],
-                "date_achat"        => $VARS_HTML["date_achat"],
-                "note"              => $VARS_HTML["note"]
-            )
-        );
+        $data = getCryptoFormData($vars);
+        $data["id_crypto"] = $idCrypto;
+        $sql = $GLOBALS_INI["PATH_HOME"] . $GLOBALS_INI["PATH_SQL"] . "update_crypto.sql";
+        $oBdd->treatDatas($pdo, $sql, $data);
 
-        return $resultat;
+        replaceCryptoRelations($pdo, $idCrypto, "strategies_crypto", "id_strategies", getRelationIds($vars, "strategies"));
+        replaceCryptoRelations($pdo, $idCrypto, "notification_crypto", "id_notification", getRelationIds($vars, "notifications"));
+        return $idCrypto;
     }
 }
 ?>

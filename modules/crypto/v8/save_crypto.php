@@ -1,28 +1,18 @@
 <?php
+require_once __DIR__ . "/crypto_form.php";
+
 class save_crypto
 {
-    function getAllResultats($numero_de_connexion, $oBdd, $GLOBALS_INI, $VARS_HTML)
+    function getAllResultats($pdo, $oBdd, $GLOBALS_INI, $vars)
     {
-        $spathSQL = $GLOBALS_INI["PATH_HOME"]
-                  . $GLOBALS_INI["PATH_SQL"]
-                  . "insert_crypto.sql";
+        $data = getCryptoFormData($vars);
+        $sql = $GLOBALS_INI["PATH_HOME"] . $GLOBALS_INI["PATH_SQL"] . "insert_crypto.sql";
+        $oBdd->treatDatas($pdo, $sql, $data);
+        $idCrypto = (int) $pdo->lastInsertId();
 
-        $resultat = $oBdd->treatDatas(
-            $numero_de_connexion,
-            $spathSQL,
-            array(
-                "nom_niveau_risque" => $VARS_HTML["nom_niveau_risque"],
-                "nom_reseau"        => $VARS_HTML["nom_reseau"],
-                "nom_crypto"        => $VARS_HTML["nom_crypto"],
-                "symbole_crypto"    => $VARS_HTML["symbole_crypto"],
-                "prix"              => $VARS_HTML["prix"],
-                "qntte_jetons"      => $VARS_HTML["qntte_jetons"],
-                "date_achat"        => $VARS_HTML["date_achat"],
-                "note"              => $VARS_HTML["note"]
-            )
-        );
-
-        return $resultat;
+        replaceCryptoRelations($pdo, $idCrypto, "strategies_crypto", "id_strategies", getRelationIds($vars, "strategies"));
+        replaceCryptoRelations($pdo, $idCrypto, "notification_crypto", "id_notification", getRelationIds($vars, "notifications"));
+        return $idCrypto;
     }
 }
 ?>
