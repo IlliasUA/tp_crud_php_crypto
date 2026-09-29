@@ -11,7 +11,7 @@
     <script src="JS/datatables.min.js"></script>
     <script src="JS/my_func.js"></script>
     <script>
-        let aOfCryptos = <?php
+        window.aOfCryptos = <?php
             echo json_encode(
                 $resultat,
                 JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
