@@ -1,12 +1,11 @@
-/* Configuration de DataTables */
-
 const configuration = {
     order: [[0, "asc"]],
+    pageLength: -1,
     pagingType: "simple_numbers",
     searching: true,
     lengthMenu: [
-        [3, 5, 10, -1],
-        ["3", "5", "10", "Tous"]
+        [5, 10, -1],
+        ["5", "10", "Tous"]
     ],
     language: {
         info: "Cryptomonnaies _START_ à _END_ sur _TOTAL_",
